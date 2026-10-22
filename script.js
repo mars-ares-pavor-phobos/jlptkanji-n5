@@ -7653,7 +7653,7 @@ const uiTexts = {
   ru: {
     appTitle: "Мастер Кандзи N5",
     welcomeTitle: "Добро Пожаловать",
-    welcomeText: "Изучайте Кандзи И Проверяйте Свои Знания",
+    welcomeText: "Изучайте Кандзи и Проверяйте Свои Знания",
     refBtn: "Справочник",
     quizBtn: "Тестирование",
     backBtn: "Назад",
@@ -7671,7 +7671,7 @@ const uiTexts = {
     nextBtn: "Следующий Вопрос",
     closeBtn: "Закрыть",
     restartBtn: "В Главное Меню",
-    vocabTitle: "Слова И Выражения",
+    vocabTitle: "Слова и Выражения",
     grammarTitle: "Грамматика",
     meaningLabel: "Значение",
     sentenceLabel: "Пример",
@@ -7684,7 +7684,7 @@ const uiTexts = {
     goodResult: "Отличный Результат!",
     okResult: "Хорошо, Продолжайте!",
     needPractice: "Повторите Материал",
-    exitConfirm: "Выйти из Теста? Текущий Результат Не Сохранится.",
+    exitConfirm: "Выйти из Теста? Текущий Результат не Сохранится.",
     mistakesTitle: "Работа над Ошибками",
     insufficientQuestions:
       "Не Удалось Подготовить Вопросы для Выбранного Режима.",
@@ -7694,7 +7694,7 @@ const uiTexts = {
     closeModalLabel: "Закрыть Карточку",
     noReading: "Не Указано",
     noWords: "Пока Нет Примеров",
-    keyboardHint: "Выберите Ответ Клавишами A, B, C, D Или 1, 2, 3, 4",
+    keyboardHint: "Выберите Ответ Клавишами A, B, C, D или 1, 2, 3, 4",
     cardReady: "Можно Перейти к Следующему Вопросу.",
     progressLabel: "Ход Теста",
     scoreLabel: "Правильных Ответов: {score}",
@@ -7705,7 +7705,7 @@ const uiTexts = {
   uz: {
     appTitle: "Kanji N5",
     welcomeTitle: "Xush Kelibsiz",
-    welcomeText: "Kanjilarni O'rganing Va Bilimingizni Tekshiring",
+    welcomeText: "Kanjilarni O'rganing va Bilimingizni Tekshiring",
     refBtn: "Ma'lumotnoma",
     quizBtn: "Test Ishlash",
     backBtn: "Ortga",
@@ -7723,7 +7723,7 @@ const uiTexts = {
     nextBtn: "Keyingi Savol",
     closeBtn: "Yopish",
     restartBtn: "Bosh Menyuga",
-    vocabTitle: "So'z Va Iboralar",
+    vocabTitle: "So'z va Iboralar",
     grammarTitle: "Grammatika",
     meaningLabel: "Ma'no",
     sentenceLabel: "Misol",
@@ -7746,7 +7746,7 @@ const uiTexts = {
     closeModalLabel: "Kartani Yopish",
     noReading: "Ko'rsatilmagan",
     noWords: "Hozircha Misollar Yo'q",
-    keyboardHint: "A, B, C, D Yoki 1, 2, 3, 4 Tugmalari Javobni Tanlaydi",
+    keyboardHint: "A, B, C, D yoki 1, 2, 3, 4 Tugmalari Javobni Tanlaydi",
     cardReady: "Keyingi Savolga O'tishingiz Mumkin.",
     progressLabel: "Test Jarayoni",
     scoreLabel: "To'g'ri Javoblar: {score}",
@@ -8654,7 +8654,9 @@ function showQuestion() {
 
   optionsGrid.appendChild(fragment);
   appState.isAnswering = false;
-  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  const quizArea = document.getElementById("quizArea");
+  quizArea.scrollTop = 0;
+  quizArea.scrollLeft = 0;
   DOM.questionType.focus({ preventScroll: true });
 }
 
