@@ -41,6 +41,8 @@
         -webkit-font-smoothing: antialiased;
         background: #000;
         overscroll-behavior-y: none;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
       }
 
       body {
@@ -130,7 +132,7 @@
       .header-subtitle {
         font-family: var(--font-jp);
         font-size: 0.75rem;
-        opacity: 0.6;
+        opacity: 0.85;
         letter-spacing: 0.1em;
       }
 
@@ -182,7 +184,7 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 30px 24px;
         overflow-y: auto;
       }
@@ -190,6 +192,8 @@
       .home-intro {
         text-align: center;
         margin-bottom: 30px;
+        margin-top: auto;
+        flex-shrink: 0;
       }
 
       .home-intro h2 {
@@ -202,13 +206,16 @@
       .home-intro p {
         font-size: 1rem;
         color: var(--ink-light);
-        opacity: 0.8;
+        opacity: 1;
+        line-height: 1.6;
       }
 
       .menu-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 16px;
+        margin-bottom: auto;
+        flex-shrink: 0;
       }
 
       @media (min-width: 400px) {
@@ -275,7 +282,7 @@
       .menu-card-jp {
         font-family: var(--font-jp);
         font-size: 0.75rem;
-        opacity: 0.5;
+        opacity: 0.8;
         letter-spacing: 0.1em;
       }
 
@@ -350,12 +357,14 @@
       }
 
       .config-section-title {
-        font-size: 0.8rem;
+        font-size: 0.95rem;
         text-transform: none;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.025em;
         color: var(--ink-light);
         margin-bottom: 12px;
         padding-left: 4px;
+        font-weight: 600;
+        line-height: 1.5;
       }
 
       .mode-option {
@@ -398,7 +407,7 @@
 
       .count-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 8px;
       }
 
@@ -491,8 +500,9 @@
       }
 
       .progress-text {
-        font-size: 0.8rem;
+        font-size: 0.95rem;
         color: var(--ink-light);
+        font-variant-numeric: tabular-nums;
       }
 
       .score-badge {
@@ -515,7 +525,8 @@
       .question-type {
         color: var(--ink-light);
         margin-bottom: 10px;
-        font-size: 0.9rem;
+        font-size: 1.05rem;
+        line-height: 1.5;
       }
 
       .question-kanji {
@@ -707,11 +718,13 @@
         min-width: 0;
       }
       .reading-label {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
         color: var(--ink-light);
         margin-bottom: 4px;
         text-transform: none;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.025em;
+        font-weight: 600;
+        line-height: 1.5;
       }
       .reading-value {
         font-size: 1.1rem;
@@ -731,12 +744,14 @@
       }
 
       .info-label {
-        font-size: 0.75rem;
+        font-size: 0.95rem;
         text-transform: none;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.025em;
         color: var(--ink-light);
         display: block;
         margin-bottom: 10px;
+        font-weight: 600;
+        line-height: 1.5;
       }
 
       .info-text {
@@ -746,8 +761,8 @@
 
       .sentence-ruby {
         font-family: var(--font-jp);
-        font-size: 1.1rem;
-        line-height: 2;
+        font-size: 1.2rem;
+        line-height: 2.4;
         color: var(--ink);
       }
 
@@ -755,8 +770,8 @@
         margin-top: 8px;
         color: var(--ink-light);
         font-style: italic;
-        font-size: 0.95rem;
-        line-height: 1.5;
+        font-size: 1.05rem;
+        line-height: 1.7;
       }
 
       .word-chip {
@@ -786,16 +801,16 @@
       .word-kanji {
         color: var(--indigo-soft);
         font-weight: 600;
-        font-size: 1.15rem;
+        font-size: 1.2rem;
         flex-shrink: 0;
         font-family: var(--font-jp);
-        line-height: 2.1;
+        line-height: 2.3;
         max-width: 100%;
       }
       .word-meaning {
         color: var(--ink-light);
-        font-size: 0.95rem;
-        line-height: 1.4;
+        font-size: 1.05rem;
+        line-height: 1.7;
         min-width: 0;
         overflow-wrap: anywhere;
       }
@@ -805,10 +820,10 @@
         ruby-align: center;
       }
       rt {
-        font-size: 0.65em;
-        line-height: 1;
+        font-size: 0.7em;
+        line-height: 1.3;
         color: var(--vermillion-soft);
-        opacity: 0.9;
+        opacity: 1;
       }
 
       .btn-primary {
@@ -921,12 +936,12 @@
         overflow: hidden;
       }
       .mistake-label {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
         color: var(--ink-light);
-        opacity: 0.7;
+        opacity: 1;
         margin-bottom: 2px;
         text-transform: none;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.025em;
       }
       .mistake-row {
         font-size: 0.95rem;
@@ -1017,12 +1032,19 @@
       }
 
 
-/* Functional and viewport fixes preserve the classic colors, fonts and layout. */
+/* Adapt the classic layout without changing its palette, fonts or card shapes. */
+:root {
+  --app-width: 520px;
+  --content-space: 24px;
+  --card-space: 28px;
+}
+
 #appSurface {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  min-width: 0;
   overflow: hidden;
 }
 [hidden] { display: none !important; }
@@ -1037,21 +1059,82 @@
   white-space: nowrap;
   border: 0;
 }
-.app-container { min-height: 0; height: 85vh; height: 85dvh; }
-.header { gap: 12px; }
+.app-container {
+  max-width: var(--app-width);
+  min-height: 0;
+  min-width: 0;
+  height: calc(100vh - 40px);
+  height: calc(100dvh - 40px);
+}
+.header { gap: 12px; padding-inline: var(--content-space); }
 .header-content { min-width: 0; }
-.header h1 { white-space: normal; overflow-wrap: anywhere; }
-.screen { min-height: 0; }
+.header h1 { white-space: normal; overflow-wrap: anywhere; line-height: 1.35; }
+.header-subtitle { display: block; margin-top: 4px; }
+.lang-switch { min-width: 48px; min-height: 44px; flex-shrink: 0; }
+.screen { min-height: 0; min-width: 0; }
+.home-content, .quiz-config, .quiz-area, .kanji-grid-container, .results-content {
+  min-height: 0;
+  min-width: 0;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #666 var(--paper-warm);
+  -webkit-overflow-scrolling: touch;
+}
+.home-content, .quiz-config, .quiz-area, .results-content { padding-inline: var(--content-space); }
+.home-content > *, .quiz-area > *, .results-content > * { flex-shrink: 0; }
+.menu-card { min-width: 0; }
+.menu-card span { overflow-wrap: anywhere; }
+.menu-card .menu-card-jp {
+  font-family: var(--font-jp);
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+.back-row { padding: 10px var(--content-space); }
+.back-btn { min-height: 44px; padding: 8px 5px; line-height: 1.5; }
+button { touch-action: manipulation; }
+.mode-option { min-width: 0; }
+.mode-option-icon { flex-shrink: 0; }
+.mode-option-text { min-width: 0; overflow-wrap: anywhere; line-height: 1.5; }
+.count-btn { min-height: 48px; padding: 12px 4px; overflow-wrap: anywhere; }
+.progress-container { min-width: 0; }
+.score-badge { flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.option-btn { min-width: 0; min-height: 56px; line-height: 1.7; }
+.option-btn > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.options-grid { padding-bottom: 2px; }
+.modal {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
 .modal-content {
-  max-height: 85vh;
-  max-height: 85dvh;
+  max-width: var(--app-width);
+  min-width: 0;
+  max-height: 90vh;
+  max-height: 90dvh;
+  padding: var(--card-space);
+  padding-bottom: max(var(--card-space), env(safe-area-inset-bottom));
   overflow-anchor: none;
   scroll-behavior: auto;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #666 #151515;
+  -webkit-overflow-scrolling: touch;
 }
 .modal-content:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
+.modal-header { gap: 12px; }
+.close-modal { width: 44px; height: 44px; flex-shrink: 0; margin-left: auto; }
+.result-badge { min-width: 0; line-height: 1.5; }
+.readings-container { gap: 16px; }
+.info-card, .reading-group { min-width: 0; }
+.info-text, .sentence-ruby, .sentence-translation { overflow-wrap: anywhere; }
+.grammar-card .info-text { line-height: 2.2; }
+.word-chip { min-width: 0; flex-wrap: wrap; }
+.word-kanji { overflow-wrap: anywhere; }
+.btn-primary, .btn-secondary { min-height: 48px; line-height: 1.5; white-space: normal; }
+.btn-primary:disabled { opacity: 1; }
+.btn-secondary { font-size: 1rem; }
 .mistake-item {
   width: 100%;
+  min-width: 0;
   background: transparent;
   border: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1061,14 +1144,68 @@
   cursor: pointer;
 }
 .mistake-item:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
-.mistake-label { display: block; }
-.mistake-row { display: block; white-space: normal; overflow: visible; overflow-wrap: anywhere; }
+.mistake-details { min-width: 0; overflow: visible; }
+.mistake-label { display: block; line-height: 1.5; }
+.mistake-row { display: block; white-space: normal; overflow: visible; overflow-wrap: anywhere; line-height: 1.7; }
+.val-incorrect { opacity: 1; }
+/* Keep the original title effect as a brief hover animation, so reading is steady. */
+.glitch-text::before, .glitch-text::after { display: none; }
+.modal.active { animation: modal-fade-in 160ms ease-out; }
+.modal.active .modal-content { animation: card-enter 220ms var(--ease-out-expo); }
+@keyframes modal-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes card-enter { from { transform: translateY(16px); } to { transform: translateY(0); } }
+@media (hover: hover) and (pointer: fine) {
+  .glitch-text:hover::before, .glitch-text:hover::after {
+    display: block;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+  }
+}
+@media (min-width: 500px) {
+  .word-meaning { flex: 1 1 12rem; }
+}
+@media (min-width: 1024px) {
+  :root { --app-width: 640px; }
+  html { font-size: 18px; }
+}
 @media (max-width: 600px) {
-  .app-container { height: 100vh; height: 100dvh; min-height: 0; max-height: 100dvh; }
-  .header { padding-top: max(20px, env(safe-area-inset-top)); }
-  .modal-content { padding-bottom: max(28px, env(safe-area-inset-bottom)); }
+  :root { --app-width: 100%; --content-space: 20px; --card-space: 22px; }
+  body { padding: 0; }
+  .app-container {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    max-height: none;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .header { padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: 16px; }
+  .home-content, .quiz-config, .quiz-area, .kanji-grid-container, .results-content {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+  .kanji-grid { padding-bottom: 0; }
+  .word-kanji { flex-shrink: 1; }
+}
+@media (max-width: 380px) {
+  :root { --content-space: 16px; --card-space: 16px; }
+  .header h1 { font-size: 1.2rem; }
+  .info-card { padding: 16px; }
+  .readings-container { padding: 12px; gap: 12px; }
+  .kanji-grid-container { padding-inline: 16px; }
+  .kanji-grid { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 10px; }
+  .option-btn { padding: 12px 14px; gap: 12px; }
+  .mistake-item { padding: 12px; gap: 10px; }
+}
+@media (max-height: 600px) {
+  .header { padding-top: max(12px, env(safe-area-inset-top)); padding-bottom: 12px; }
+  .home-content { padding-block: 20px; }
+  .home-intro { margin-bottom: 20px; }
+  .quiz-progress { margin-bottom: 16px; }
+  .question-card { margin: 8px 0 20px; }
+  .question-kanji { font-size: 4rem; }
+  .modal-content { max-height: calc(100vh - 12px); max-height: calc(100dvh - 12px); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .glitch-text::before, .glitch-text::after { display: none; }
+  .glitch-text::before, .glitch-text::after { display: none !important; }
 }
