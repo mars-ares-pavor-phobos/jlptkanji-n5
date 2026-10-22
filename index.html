@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Мастер Кандзи N5</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,184 +19,186 @@
   </head>
   <body>
     <div class="app-container" id="appContainer">
-      <header class="header">
-        <div class="header-content">
-          <h1 id="appTitle" class="glitch-text" data-text="Мастер Кандзи N5">
-            Мастер Кандзи N5
-          </h1>
-          <span class="header-subtitle">日本語能力試験</span>
-        </div>
-        <button
-          class="lang-switch"
-          id="langSwitch"
-          type="button"
-          aria-label="Toggle language"
-        >
-          UZ
-        </button>
-      </header>
-
-      <div id="homeScreen" class="screen">
-        <div class="home-content">
-          <div class="home-intro">
-            <h2 id="welcomeTitle">Добро Пожаловать</h2>
-            <p id="welcomeText">Изучайте и Практикуйте Кандзи</p>
+      <div id="appSurface">
+        <header class="header">
+          <div class="header-content">
+            <h1 id="appTitle" class="glitch-text" data-text="Мастер Кандзи N5">
+              Мастер Кандзи N5
+            </h1>
+            <span class="header-subtitle" lang="ja">日本語能力試験</span>
           </div>
-          <div class="menu-grid">
-            <button class="menu-card" type="button" data-screen="reference">
-              <div class="menu-card-icon">
-                <i class="fas fa-book-open"></i>
-              </div>
-              <span id="refBtnText">Справочник</span>
-              <span class="menu-card-jp">辞書</span>
+          <button
+            class="lang-switch"
+            id="langSwitch"
+            type="button"
+            aria-label="Переключить Язык на Узбекский"
+          >
+            UZ
+          </button>
+        </header>
+
+        <div id="homeScreen" class="screen" tabindex="-1">
+          <div class="home-content">
+            <div class="home-intro">
+              <h2 id="welcomeTitle" tabindex="-1">Добро Пожаловать</h2>
+              <p id="welcomeText">Изучайте Кандзи И Проверяйте Свои Знания</p>
+            </div>
+            <div class="menu-grid">
+              <button class="menu-card" type="button" data-screen="reference">
+                <div class="menu-card-icon">
+                  <i class="fas fa-book-open"></i>
+                </div>
+                <span id="refBtnText">Справочник</span>
+                <span class="menu-card-jp" lang="ja">辞書</span>
+              </button>
+              <button class="menu-card" type="button" data-screen="quizConfig">
+                <div class="menu-card-icon">
+                  <i class="fas fa-pen-fancy"></i>
+                </div>
+                <span id="quizBtnText">Тестирование</span>
+                <span class="menu-card-jp" lang="ja">テスト</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="referenceScreen" class="screen hidden" tabindex="-1">
+          <div class="back-row">
+            <button class="back-btn" id="referenceBackBtn" type="button">
+              <i class="fas fa-arrow-left"></i>
+              <span id="refBackBtn">Назад</span>
             </button>
-            <button class="menu-card" type="button" data-screen="quizConfig">
-              <div class="menu-card-icon">
-                <i class="fas fa-pen-fancy"></i>
+          </div>
+          <div class="kanji-grid-container">
+            <div class="kanji-grid" id="kanjiGrid"></div>
+          </div>
+        </div>
+
+        <div id="quizConfigScreen" class="screen hidden" tabindex="-1">
+          <div class="back-row">
+            <button class="back-btn" id="configBackBtnTrigger" type="button">
+              <i class="fas fa-arrow-left"></i>
+              <span id="configBackBtn">Назад</span>
+            </button>
+          </div>
+          <div class="quiz-config">
+            <div class="config-section">
+              <div class="config-section-title" id="modeTitle">Режим</div>
+              <div class="mode-options">
+                <button
+                  class="mode-option selected"
+                  data-mode="reading"
+                  type="button"
+                  aria-pressed="true"
+                >
+                  <div class="mode-option-icon">
+                    <i class="fas fa-language"></i>
+                  </div>
+                  <div class="mode-option-text">
+                    <span id="modeReadingText">Кандзи: Чтение</span>
+                  </div>
+                </button>
+                <button
+                  class="mode-option"
+                  data-mode="meaning"
+                  type="button"
+                  aria-pressed="false"
+                >
+                  <div class="mode-option-icon">
+                    <i class="fas fa-lightbulb"></i>
+                  </div>
+                  <div class="mode-option-text">
+                    <span id="modeMeaningText">Кандзи: Значение</span>
+                  </div>
+                </button>
+                <button
+                  class="mode-option"
+                  data-mode="mixed"
+                  type="button"
+                  aria-pressed="false"
+                >
+                  <div class="mode-option-icon">
+                    <i class="fas fa-random"></i>
+                  </div>
+                  <div class="mode-option-text">
+                    <span id="modeMixedText">Смешанный Режим</span>
+                  </div>
+                </button>
               </div>
-              <span id="quizBtnText">Тестирование</span>
-              <span class="menu-card-jp">テスト</span>
+            </div>
+
+            <div class="config-section">
+              <div class="config-section-title" id="countTitle">
+                Количество Вопросов
+              </div>
+              <div class="count-grid" id="countGrid"></div>
+            </div>
+
+            <button class="start-btn" id="startBtn" type="button">
+              <span>Начать Тест</span>
             </button>
           </div>
         </div>
-      </div>
 
-      <div id="referenceScreen" class="screen hidden">
-        <div class="back-row">
-          <button class="back-btn" id="referenceBackBtn" type="button">
-            <i class="fas fa-arrow-left"></i>
-            <span id="refBackBtn">Назад</span>
-          </button>
-        </div>
-        <div class="kanji-grid-container">
-          <div class="kanji-grid" id="kanjiGrid"></div>
-        </div>
-      </div>
-
-      <div id="quizConfigScreen" class="screen hidden">
-        <div class="back-row">
-          <button class="back-btn" id="configBackBtnTrigger" type="button">
-            <i class="fas fa-arrow-left"></i>
-            <span id="configBackBtn">Назад</span>
-          </button>
-        </div>
-        <div class="quiz-config">
-          <div class="config-section">
-            <div class="config-section-title" id="modeTitle">Режим</div>
-            <div class="mode-options">
-              <button
-                class="mode-option selected"
-                data-mode="reading"
-                type="button"
-                aria-pressed="true"
-              >
-                <div class="mode-option-icon">
-                  <i class="fas fa-language"></i>
-                </div>
-                <div class="mode-option-text">
-                  <span id="modeReadingText">Кандзи → Чтение</span>
-                </div>
-              </button>
-              <button
-                class="mode-option"
-                data-mode="meaning"
-                type="button"
-                aria-pressed="false"
-              >
-                <div class="mode-option-icon">
-                  <i class="fas fa-lightbulb"></i>
-                </div>
-                <div class="mode-option-text">
-                  <span id="modeMeaningText">Кандзи → Значение</span>
-                </div>
-              </button>
-              <button
-                class="mode-option"
-                data-mode="mixed"
-                type="button"
-                aria-pressed="false"
-              >
-                <div class="mode-option-icon">
-                  <i class="fas fa-random"></i>
-                </div>
-                <div class="mode-option-text">
-                  <span id="modeMixedText">Смешанный Режим</span>
-                </div>
-              </button>
-            </div>
+        <div id="quizScreen" class="screen hidden" tabindex="-1">
+          <div class="back-row">
+            <button class="back-btn" id="quizBackBtnTrigger" type="button">
+              <i class="fas fa-arrow-left"></i>
+              <span id="quizBackBtn">Выйти</span>
+            </button>
           </div>
-
-          <div class="config-section">
-            <div class="config-section-title" id="countTitle">
-              Количество Вопросов
-            </div>
-            <div class="count-grid" id="countGrid"></div>
-          </div>
-
-          <button class="start-btn" id="startBtn" type="button">
-            <span>Начать Тест</span>
-          </button>
-        </div>
-      </div>
-
-      <div id="quizScreen" class="screen hidden">
-        <div class="back-row">
-          <button class="back-btn" id="quizBackBtnTrigger" type="button">
-            <i class="fas fa-arrow-left"></i>
-            <span id="quizBackBtn">Выйти</span>
-          </button>
-        </div>
-        <div class="quiz-area">
-          <div class="quiz-progress">
-            <div class="progress-container">
-              <div class="progress-bar">
-                <div
-                  class="progress-fill"
-                  id="progressFill"
-                  style="width: 10%"
-                ></div>
+          <div class="quiz-area">
+            <div class="quiz-progress">
+              <div class="progress-container">
+                <div class="progress-bar" id="quizProgress" role="progressbar" aria-label="Ход Теста" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0">
+                  <div
+                    class="progress-fill"
+                    id="progressFill"
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <span class="progress-text" id="progressText">1 / 15</span>
               </div>
-              <span class="progress-text" id="progressText">1 / 10</span>
+              <div class="score-badge" id="scoreBadge">
+                <i class="fas fa-check"></i>
+                <span id="scoreText">0</span>
+              </div>
             </div>
-            <div class="score-badge">
-              <i class="fas fa-check"></i>
-              <span id="scoreText">0</span>
+            <div class="question-type" id="questionType" role="heading" aria-level="2" tabindex="-1">Выберите Чтение</div>
+            <div class="question-card">
+              <span class="question-kanji" id="questionKanji" lang="ja"></span>
             </div>
+            <div class="options-grid" id="optionsGrid"></div>
           </div>
-          <div class="question-type" id="questionType">Выберите Чтение</div>
-          <div class="question-card">
-            <span class="question-kanji" id="questionKanji">政</span>
-          </div>
-          <div class="options-grid" id="optionsGrid"></div>
         </div>
-      </div>
 
-      <div id="resultsScreen" class="screen hidden">
-        <div class="results-content">
-          <div class="results-decoration" id="resultsEmoji">🎉</div>
-          <div class="results-score">
-            <span id="correctCount">8</span><span>/</span
-            ><span id="totalCount">10</span>
+        <div id="resultsScreen" class="screen hidden" tabindex="-1">
+          <div class="results-content">
+            <div class="results-decoration" id="resultsEmoji">🎉</div>
+            <div class="results-score">
+              <span id="correctCount">0</span><span>/</span
+              ><span id="totalCount">0</span>
+            </div>
+            <div class="results-label" id="resultsLabel">Правильных Ответов</div>
+            <div class="results-message" id="resultsMessage">
+              Отличный Результат!
+            </div>
+
+            <h3 id="mistakesTitle" class="mistakes-title hidden">
+              Работа над Ошибками
+            </h3>
+            <div id="mistakesList" class="mistakes-list hidden"></div>
+
+            <button class="btn-primary" id="resultsHomeBtn" type="button">
+              <span id="restartBtn">В Главное Меню</span>
+            </button>
           </div>
-          <div class="results-label" id="resultsLabel">Правильных Ответов</div>
-          <div class="results-message" id="resultsMessage">
-            Отличный результат!
-          </div>
-
-          <h3 id="mistakesTitle" class="mistakes-title hidden">
-            Работа над ошибками
-          </h3>
-          <div id="mistakesList" class="mistakes-list hidden"></div>
-
-          <button class="btn-primary" id="resultsHomeBtn" type="button">
-            <span id="restartBtn">В Главное Меню</span>
-          </button>
         </div>
-      </div>
 
-      <div class="modal" id="detailModal">
-        <div class="modal-content" id="detailModalContent">
-          <div class="modal-handle"></div>
+      </div>
+      <div class="modal" id="detailModal" hidden>
+        <div class="modal-content" id="detailModalContent" role="dialog" aria-modal="true" aria-labelledby="modalKanji" aria-describedby="modalMeaning" tabindex="0">
+          <div class="modal-handle" aria-hidden="true"></div>
           <div class="modal-header">
             <span class="result-badge correct" id="resultBadge">
               <i class="fas fa-check"></i>
@@ -206,24 +208,24 @@
               class="close-modal"
               id="closeModalBtn"
               type="button"
-              aria-label="Close modal"
+              aria-label="Закрыть Карточку"
             >
               <i class="fas fa-times"></i>
             </button>
           </div>
 
           <div class="kanji-display">
-            <span class="kanji-big" id="modalKanji"></span>
+            <span class="kanji-big" id="modalKanji" lang="ja"></span>
           </div>
 
           <div class="readings-container">
             <div class="reading-group">
-              <div class="reading-label">Онъёми</div>
-              <div class="reading-value" id="modalOnyomi"></div>
+              <div class="reading-label" id="onyomiLabel">Онъёми</div>
+              <div class="reading-value" id="modalOnyomi" lang="ja"></div>
             </div>
             <div class="reading-group">
-              <div class="reading-label">Кунъёми</div>
-              <div class="reading-value" id="modalKunyomi"></div>
+              <div class="reading-label" id="kunyomiLabel">Кунъёми</div>
+              <div class="reading-value" id="modalKunyomi" lang="ja"></div>
             </div>
           </div>
 
@@ -233,13 +235,13 @@
           </div>
 
           <div class="info-card">
-            <span class="info-label" id="vocabLabel">Словарь</span>
+            <span class="info-label" id="vocabLabel">Слова И Выражения</span>
             <div class="words-grid" id="modalWords"></div>
           </div>
 
           <div class="info-card sentence-card">
             <span class="info-label" id="sentenceLabel">Пример</span>
-            <div class="sentence-ruby" id="modalSentenceRuby"></div>
+            <div class="sentence-ruby" id="modalSentenceRuby" lang="ja"></div>
             <div
               class="sentence-translation"
               id="modalSentenceTranslation"
@@ -257,6 +259,7 @@
           <button class="btn-secondary hidden" id="closeRefBtn" type="button">
             <span id="closeBtnText">Закрыть</span>
           </button>
+          <span class="sr-only" id="cardStatus" role="status" aria-live="polite"></span>
         </div>
       </div>
     </div>
